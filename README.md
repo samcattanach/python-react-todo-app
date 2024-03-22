@@ -9,38 +9,38 @@ python v3.12, pip v24, flask
 node.jsjs v20, react
 
 
-Note: instuctions are for mac
+Note: instuctions are for macos
 
 ## Install locally:
 $ git clone 
 
-Tasks database:
+### Tasks database:
 
-API server:
+### API server:
 $ cd api
 $ python3 -m venv venv
 $ source venv/bin/activate
 $ pip install
 in config.py change SQLALCHEMY_DATABASE_URI
 
-UI server:
+### UI server:
 $ npm install
 
 
 ## Run API Unit Tests
 $ export FLASK_APP=app
 $ export FLASK_ENV=testing
-$ pytest
+$ pytest tests/api_tests.py
 
 ## Run locally:
 Tasks database:
 
-API server:
+### API server:
 $ cd api
 $ export FLASK_APP=app
 $ flask run
 
-UI server:
+### UI server:
 $ cd ../ui
 $ npm start
 
