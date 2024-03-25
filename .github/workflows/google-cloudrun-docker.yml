@@ -38,24 +38,26 @@ jobs:
           password: '${{ steps.auth.outputs.access_token }}'
           registry: '${{ env.GAR_LOCATION }}-docker.pkg.dev'
 
+      # copy docker-service-account from secret. build, push container
       - name: Build and Push Container
         run: |-
           cd api
-          echo "${{ secrets.DOCKER_SERVICE_ACCOUNT }}" > /tmp/docker-service-account.json
+          echo "${{ secrets.DOCKER_SERVICE_ACCOUNT }}" > /app/docker-service-account.json
           docker build -t "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}" ./
           docker push "${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}"
 
 
 
-      # END - Docker auth and build
+      # Docker auth and build
 
       - name: Deploy to Cloud Run
         id: deploy
-        uses: google-github-actions/deploy-cloudrun@v2
+        uses: google-github-actions/deploy-cloudrun@v0
         with:
           service: ${{ env.SERVICE }}
           region: ${{ env.REGION }}
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.SERVICE }}/${{ env.SERVICE }}:${{ github.sha }}
+
 
       # use the Cloud Run url output in later steps
       - name: Show Output
