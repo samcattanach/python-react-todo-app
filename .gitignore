@@ -195,3 +195,4 @@ yarn-error.log*
 *copy
 
 api/docker-service-account.json
+cloud-sql-proxy

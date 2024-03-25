@@ -21,9 +21,9 @@ $ cd api
 $ python3 -m venv venv
 $ source venv/bin/activate
 $ pip install
-in config.py change SQLALCHEMY_DATABASE_URI
 
 ### UI server:
+$ cd ../ui
 $ npm install
 
 
