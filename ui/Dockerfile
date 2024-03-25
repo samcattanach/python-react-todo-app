@@ -10,6 +10,11 @@ COPY app/package.json /app/
 
 RUN npm install
 
+# pass in API endpoint
+ARG FLASK_APP_URL
+RUN echo "FLASK_APP_URL=${FLASK_APP_URL}" > .env
+
+
 EXPOSE 3000
 
 CMD ["npm", "start"]
