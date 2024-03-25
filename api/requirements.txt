@@ -1,3 +1,8 @@
 Flask==3.0.2
 flask_sqlalchemy==3.1.1
+pg8000==1.30.5
+protobuf==5.26.0
 pytest==8.1.1
+SQLAlchemy==2.0.29
+google-cloud-secret-manager
+psycopg2

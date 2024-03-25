@@ -5,7 +5,6 @@ from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
 import os, json, pg8000, sqlalchemy
 from config import Config, DeployedConfig, TestConfig
-from google.cloud.sql.connector import Connector, IPTypes
 from google.cloud import secretmanager
 
 # get cloud secret
