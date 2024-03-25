@@ -13,7 +13,7 @@ COPY docker-service-account.json /cloudsql/key.json
 ENV GOOGLE_APPLICATION_CREDENTIALS=/cloudsql/key.json
 
 RUN pip3 install -r requirements.txt
-EXPOSE 5000
+EXPOSE 8080
 
 
 # Start Cloud SQL Proxy & Flask app using a shell script

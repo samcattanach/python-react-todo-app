@@ -9,6 +9,7 @@ from google.cloud import secretmanager
 
 # get cloud secret
 def access_secret_version(project_id, secret_id, version_id="latest"):
+    print("Getting db secret...")
     client = secretmanager.SecretManagerServiceClient()
     name = f"projects/{project_id}/secrets/{secret_id}/versions/{version_id}"
     response = client.access_secret_version(request={"name": name})
@@ -17,6 +18,7 @@ def access_secret_version(project_id, secret_id, version_id="latest"):
         credentials = json.loads(payload)
     except json.JSONDecodeError:
         raise ValueError("Failed to decode secret data as JSON.")
+    print("Got secret")
     return credentials
 
 # get DB conn details
@@ -31,9 +33,9 @@ db_url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(credentials["user"], cred
 db = SQLAlchemy()
 
 def create_app():
+    print("Launching...")
     app = Flask(__name__)
 
-    print("Launching...")
 
     if os.getenv('FLASK_ENV') == 'production':
         print("Config: DeployedConfig")
@@ -59,4 +61,5 @@ def create_app():
     app.register_blueprint(tasks_bp)
 
     print("Ready")
+    print(app.config)
     return app

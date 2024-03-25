@@ -1,15 +1,9 @@
 # app entry point
-# from app import create_app
+from app import create_app
 
-# app = create_app()
-
-from flask import Flask
-app = Flask(__name__)
-
-@app.route('/')
-def test():
-    return 'test'
-
+app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, port=8080)
+
+
