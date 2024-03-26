@@ -81,6 +81,6 @@ jobs:
           image: ${{ env.GAR_LOCATION }}-docker.pkg.dev/${{ env.PROJECT_ID }}/${{ env.UI_SERVICE }}/${{ env.UI_SERVICE }}:${{ github.sha }}
 
       - name: Show React Output
-        run: echo ${{ steps.deploy.outputs.url }}
+        run: echo ${{ steps.deploy2.outputs.url }}
 
 

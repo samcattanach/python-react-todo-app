@@ -1,5 +1,6 @@
 # Initializes Flask app and brings together other components
 from flask import Flask
+from flask_cors import CORS
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import create_engine, MetaData
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -35,7 +36,7 @@ db = SQLAlchemy()
 def create_app():
     print("Launching...")
     app = Flask(__name__)
-
+    CORS(app)
 
     if os.getenv('FLASK_ENV') == 'production':
         print("Config: DeployedConfig")

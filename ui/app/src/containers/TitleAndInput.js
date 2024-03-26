@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { Text, Input, Button, Flex, useColorMode } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
@@ -50,7 +50,7 @@ const TitleAndInput = (props) => {
           placeholder="Enter a new task..."
           backgroundColor={colorMode === "light" ? "white" : "white.100"}
           borderColor="white.200"
-          color="white.700"
+          color={colorMode === "light" ? "gray.800" : "black"}
           focusBorderColor={colorMode === "light" ? "cyan.200" : "cyan.700"}
           margin="8px 1px"
           fontSize={["xl", "lg", "lg", "md"]}

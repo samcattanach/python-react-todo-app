@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from 'react';
 import { Text, Flex, useColorMode } from "@chakra-ui/core";
 import { connect } from "react-redux";
 
@@ -6,8 +6,32 @@ import NavigationBar from "./../components/NavigationBar";
 import ListItem from "./../components/ListItem";
 import CategoryButtons from "./../components/CategoryButtons";
 import TitleAndInput from "./TitleAndInput";
+import apiUrl from './../api.txt';
+
 
 const ToDoList = (props) => {
+
+
+  console.log(apiUrl)
+
+  useEffect(() => {
+    // Async function to fetch tasks from your API
+    const fetchTasks = async () => {
+      try {
+        const response = await fetch(apiUrl+'/tasks');
+        if (!response.ok) {
+          throw new Error('Failed to fetch tasks');
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.log(error.message);
+      } 
+    };
+
+    fetchTasks();
+  }, []);
+
   /*  Checks if visibleList is undefined and if so, maps from the allList instead. 
       This is done to avoid errors when the app first starts up.  */
   const getList = () => {
